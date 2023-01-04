@@ -8,11 +8,27 @@ public class Player : MonoBehaviour
     private int health;
     [SerializeField]
     private int maxHealth;
+    [SerializeField]
+    private Coordinate coor;
     
-    public int Health => health;
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            health = Mathf.Max(0, value);
+        }
+    }
     public int MaxHealth => maxHealth;
 
-    private void Awake() {
+    private void Awake()
+    {
         health = maxHealth;
+        coor = Coordinate.WorldPointToCoordinate(transform.position);
+    }
+
+    private void Move(Coordinate coor) 
+    {
+        TileManager.Inst.GetTile(coor).OnStep(this);
     }
 }

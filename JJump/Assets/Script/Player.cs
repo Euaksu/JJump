@@ -8,8 +8,12 @@ public class Player : MonoBehaviour
     private int health;
     [SerializeField]
     private int maxHealth;
-    [SerializeField]
     private Coordinate coor;
+    [Header("Set Coordinate")]
+    [SerializeField]
+    private int x;
+    [SerializeField]
+    private int y;
     
     public int Health
     {
@@ -25,6 +29,12 @@ public class Player : MonoBehaviour
     {
         health = maxHealth;
         coor = Coordinate.WorldPointToCoordinate(transform.position);
+    }
+
+    private void OnValidate()
+    {
+        coor = new Coordinate(x, y);
+        transform.position = Coordinate.CoordinatetoWorldPoint(coor);
     }
 
     private void Move(Coordinate coor) 

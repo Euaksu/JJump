@@ -8,7 +8,7 @@ public abstract class Tile : MonoBehaviour
     private Coordinate coor;
 
     public Coordinate Coor => coor;
-
+    
     protected virtual void OnValidate() 
     {
         coor = Coordinate.WorldPointToCoordinate(transform.position);

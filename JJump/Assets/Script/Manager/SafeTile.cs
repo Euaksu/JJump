@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SafeTile : Tile
+public class SafeTile : MonoBehaviour
 {
-    public override void OnStep(Player player)
-    {
-    }
+   
 }

@@ -5,13 +5,15 @@ using UnityEngine;
 public class Rabbit : MonoBehaviour
 {
     public float speed = 3;
+    float elapsedTime = 0;
+    Distance notify_tile;
    
-    Rigidbody2D rigid;
+
     void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        notify_tile = GameObject.Find("Rabbit").GetComponent<Distance>();
+        
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -31,19 +33,39 @@ public class Rabbit : MonoBehaviour
         {
             transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
         }
+        //발판 종류
+       if(notify_tile.CloseTile.layer == 10)
+        {
+
+        }
+        if (notify_tile.CloseTile.layer == 11 && notify_tile.shortDis < 0.5)
+        {
+            Destroy(gameObject);
+            Debug.Log("GameOver");
+        }
+//if(notify_tile.CloseTile.layer == 13 && notify_tile.shortDis < 3)
+        //{
+        //    elapsedTime= 0;
+        //    while(elapsedTime < 1) {
+        //        if (Input.GetKey(KeyCode.LeftArrow))
+        //        {
+        //            transform.Translate(new Vector3(5, 0, 0));
+        //        }
+        //        if (Input.GetKey(KeyCode.RightArrow))
+        //        {
+        //            transform.Translate(new Vector3(-5, 0, 0));
+        //        }
+        //        if (Input.GetKey(KeyCode.UpArrow))
+        //        {
+        //            transform.Translate(new Vector3(0, -5, 0));
+        //        }
+        //        if (Input.GetKey(KeyCode.DownArrow))
+        //        {
+        //            transform.Translate(new Vector3(0, 5, 0));
+        //        } 
+        //    }
+        //}
         
     }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle")) 
-        {
-            Destroy(gameObject);
-            Debug.Log("GameOver");
-        }
-        if (collision.gameObject.CompareTag("Blink"))
-        {
-            Destroy(gameObject);
-            Debug.Log("GameOver");
-        }
-    }
+ 
 }

@@ -20,15 +20,15 @@ public class BlinkTile : MonoBehaviour
         {
             ElapsedTime = 0;
             OnOff = !OnOff;
+            if(OnOff == true)
+            {
+                this.gameObject.layer = 10;
+            }
+            else
+            {
+                this.gameObject.layer = 11;
+            }
         }
-        if (OnOff) 
-        {
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        }
-        if (!OnOff)
-        {
-            gameObject.GetComponent<CircleCollider2D>().enabled = true;
-            
-        }
+       
     }
 }
